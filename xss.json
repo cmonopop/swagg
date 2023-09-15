@@ -1,0 +1,2774 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "|
+    <form><math><mtext></form><form><mglyph><svg><mtext><textarea><path id="</textarea><img onerror=alert('esecforte') src=1>"></form>",
+    "version": "1.0.4",
+    "title": "Fraud Management API",
+    "termsOfService": "Please refer to Tata Communications Usage Policy at developers.tatacommunications.com/tos"
+  },
+  "host": "api.tatacommunications.com",
+  "basePath": "/sb/tcaf/v1.0",
+  "tags": [
+    {
+      "name": "Products",
+      "description": "Generate a list of global destinations and your VTS product"
+    },
+    {
+      "name": "STMS Order",
+      "description": "Manage STMS Order."
+    },
+    {
+      "name": "Alerts",
+      "description": "Manage STMS alerting and blocking thresholds."
+    },
+    {
+      "name": "Blocks",
+      "description": "Manage ad-hoc blocks."
+    },
+    {
+      "name": "Reports",
+      "description": "Generates reports of STMS alerts and blocks."
+    },
+    {
+      "name": "Sandbox Token",
+      "description": "Generate JSON Web Token (JWT)"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/customers/{orgId}/orders/STMS": {
+      "get": {
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Authorization",
+            "description": "JWT bearer token used for sandbox only(256 character alphanumeric key generated from sandbox register api)",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "orgId",
+            "description": "Unique identifier of API user’s organization. Available in invoice provided by Tata Communications",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "STMS Order"
+        ],
+        "summary": "Generates list of existing STMS order",
+        "description": "<p>Use this API to retrieve the list of all the STMS Orders submitted along with their status,for a specific orgid.Subscriber Traffic Management Service (STMS) allows user to manage alerting & blocking functions autonomously. Alert & block thresholds can be set in terms of: (i) Monetary value and/or (ii) Minutes of Use.",
+        "operationId": "getStmssevicesforCustomer",
+        "responses": {
+          "200": {
+            "description": "List the order details",
+            "schema": {
+              "$ref": "#/definitions/ResponseGetStmsOrder"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "401": {
+            "description": "The request requires user authentication",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "403": {
+            "description": "The server understood the request, but is refusing to fulfill it",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "404": {
+            "description": "The server has not found anything matching the Request-URI",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "405": {
+            "description": "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          }
+        },
+        "deprecated": false,
+        "x-media-type-request-default": true,
+        "x-media-type-response-default": false,
+        "consumes": [
+          "*/*"
+        ],
+        "security": [
+          {
+            "UserSecurity": []
+          }
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Authorization",
+            "description": "JWT bearer token used for sandbox only(256 character alphanumeric key generated from sandbox register api)",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RequestStmsOrder"
+            }
+          },
+          {
+            "in": "path",
+            "name": "orgId",
+            "description": "Unique identifier of API user’s organization. Available in invoice provided by Tata Communications",
+            "type": "number",
+            "required": true
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "STMS Order"
+        ],
+        "summary": "Creates a new STMS order",
+        "description": "Use this API to subscribe to STMS by creating a STMS Order. Subscriber Traffic Management Service (STMS) allows user to manage alerting & blocking functions autonomously. Alert & block thresholds can be set in terms of: (i) Monetary value and/or (ii) Minutes of Use.",
+        "operationId": "createstmsorderforcustomer",
+        "responses": {
+          "201": {
+            "description": "List the order details",
+            "schema": {
+              "$ref": "#/definitions/StmsOrder"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "401": {
+            "description": "The request requires user authentication",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "403": {
+            "description": "The server understood the request, but is refusing to fulfill it",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "404": {
+            "description": "The server has not found anything matching the Request-URI",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "405": {
+            "description": "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          }
+        },
+        "deprecated": false,
+        "x-media-type-request-default": false,
+        "x-media-type-response-default": false,
+        "security": [
+          {
+            "UserSecurity": []
+          }
+        ]
+      }
+    },
+    "/customers/{orgId}/orders/{orderId}": {
+      "delete": {
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Authorization",
+            "description": "JWT bearer token used for sandbox only(256 character alphanumeric key generated from sandbox register api)",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "orderId",
+            "description": "The orgId of the  customer",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "orgId",
+            "description": "Unique identifier of API user’s organization. Available in invoice provided by Tata Communications",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "STMS Order"
+        ],
+        "summary": "Delete an existing STMS order",
+        "description": "Use this API Call to delete an existing STMS Order request.",
+        "operationId": "deleteStmsConfigforCustomer",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "401": {
+            "description": "The request requires user authentication",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "403": {
+            "description": "The server understood the request, but is refusing to fulfill it",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "404": {
+            "description": "The server has not found anything matching the Request-URI",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "405": {
+            "description": "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          }
+        },
+        "deprecated": false,
+        "x-media-type-request-default": false,
+        "x-media-type-response-default": false,
+        "security": [
+          {
+            "UserSecurity": []
+          }
+        ]
+      }
+    },
+    "/customers/{orgId}/products/{cmsId}/alerts/{fraudServiceId}": {
+      "get": {
+        "tags": [
+          "Alerts"
+        ],
+        "summary": "Generates list of existing STMS settings",
+        "description": "Subscriber Traffic Management Service (STMS) alerting & blocking functions are managed through the Alerts resource. Use this API to retrieve the STMS settings for your products by cmsId. STMS can establish alerting and blocking of voice usage thresholds per: i) aNumber CLID, aNumber can be Every ANI, All Traffic (ii) Pricing Destinations, bDestination can be Every Destination, All Traffic. Alert & block thresholds can be set in terms of: (i) Monetary value and/or (ii) Minutes of Use. ",
+        "operationId": "getStmsConfigforCustomer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "Unique identifier of API user’s organization. Available in invoice provided by Tata Communications",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cmsId",
+            "in": "path",
+            "description": "Unique product identifier for Voice Termination Service (VTS). Available in invoice provided by Tata Communications",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "X-Authorization",
+            "in": "header",
+            "description": "JWT bearer token used for sandbox only(256 character alphanumeric key generated from sandbox register api)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "aNumber",
+            "in": "query",
+            "description": "Number of calling party. To be entered in full E.164 format, leading + sign is not allowed",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "bDestination",
+            "in": "query",
+            "description": "Destination name as per Tata Communications rate sheet",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "stmsId",
+            "in": "query",
+            "description": "Unique identifier of stms alert created",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fraudServiceId",
+            "in": "path",
+            "description": "Unique identifier of Subscriber Traffic Management Service (stms)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Optionally provide the number of results per page. Default results per page is 250, maximum results per page is 250",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "pageToken",
+            "in": "query",
+            "description": "A page token to retrieve the next page of results. Use the system-provided pageToken value from a response payload here",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Alert settings array",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "401": {
+            "description": "The request requires user authentication",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "403": {
+            "description": "The server understood the request, but is refusing to fulfill it",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "404": {
+            "description": "The server has not found anything matching the Request-URI",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "405": {
+            "description": "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          }
+        },
+        "security": [
+          {
+            "UserSecurity": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Alerts"
+        ],
+        "summary": "Creates a new voice alert",
+        "description": "Subscriber Traffic Management Service (STMS) alerting & blocking functions are managed through the Alerts resource. Use this API to configure STMS for your products by cmsId. STMS can establish alerting and blocking of voice usage thresholds per: i) aNumber CLID, aNumber can be Every ANI, All Traffic (ii) Pricing Destinations, bDestination can be Every Destination, All Traffic.The GET/Destinations API call in Products will give you the list of Pricing Destinations. Alert & Block thresholds can be set in terms of: (i) Monetary value and/or (ii) Minutes of Use.",
+        "operationId": "createStmsConfigforCustomer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/body"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "Unique identifier of API user’s organization. Available in invoice provided by Tata Communications",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cmsId",
+            "in": "path",
+            "description": "Unique product identifier for Voice Termination Service (VTS). Available in invoice provided by Tata Communications.User can also fetch the cmsId for a specific orgId by executing GET /customers/{orgId}/products in Products module.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "X-Authorization",
+            "in": "header",
+            "description": "JWT bearer token used for sandbox only (256 character alphanumeric key generated from sandbox register api)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fraudServiceId",
+            "in": "path",
+            "description": "Unique identifier of Subscriber Traffic Management Service (stms)",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Alert setting object",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_entries"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "401": {
+            "description": "The request requires user authentication",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "403": {
+            "description": "The server understood the request, but is refusing to fulfill it",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "404": {
+            "description": "The server has not found anything matching the Request-URI",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "405": {
+            "description": "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          }
+        },
+        "security": [
+          {
+            "UserSecurity": []
+          }
+        ]
+      }
+    },
+    "/customers/{orgId}/products/{cmsId}/alerts/{fraudServiceId}/{stmsId}": {
+      "put": {
+        "tags": [
+          "Alerts"
+        ],
+        "summary": "Updates a voice alert",
+        "description": "Subscriber Traffic Management Service (STMS) alerting & blocking functions are managed through the Alerts resource. Use this API to update STMS settings for your products by cmsId. STMS can establish alerting and blocking of voice usage thresholds per: i) aNumber CLID usage and/or aNumber can be Every ANI, All Traffic (ii) Pricing Destinations and/or bDestination can be Every Destination, All Traffic. Alert & Block thresholds can be set in terms of: (i) Monetary value and/or (ii) Minutes of Use. ",
+        "operationId": "updateStmsConfigforCustomer",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/body_1"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "Unique identifier of API user’s organization. Available in invoice provided by Tata Communications",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cmsId",
+            "in": "path",
+            "description": "Unique product identifier for Voice Termination Service (VTS). Available in invoice provided by Tata Communications. User can also fetch the cmsId for a specific orgId by executing GET /customers/{orgId}/products in Products module.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "stmsId",
+            "in": "path",
+            "description": "Unique identifier of stms alert created.User can fetch stmsId by executing GET /customers/{orgId}/products/{cmsId}/alerts/{fraudServiceId}",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "X-Authorization",
+            "in": "header",
+            "description": "JWT bearer token used for sandbox only (256 character alphanumeric key generated from sandbox register api)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fraudServiceId",
+            "in": "path",
+            "description": "Unique identifier of Subscriber Traffic Management Service (stms)",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "updated STMS object",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_entries"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "401": {
+            "description": "The request requires user authentication",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "403": {
+            "description": "The server understood the request, but is refusing to fulfill it",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "404": {
+            "description": "The server has not found anything matching the Request-URI",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "405": {
+            "description": "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          }
+        },
+        "security": [
+          {
+            "UserSecurity": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Alerts"
+        ],
+        "summary": "Removes a voice alert",
+        "description": "Subscriber Traffic Management Service (STMS) alerting & blocking functions are managed through the Alerts resource. Use this API to delete STMS settings for your products by cmsId. STMS can establish alerting and blocking of voice usage thresholds per: i) aNumber CLID, aNumber can be Every ANI, All Traffic (ii) Pricing Destinations, bDestination can be Every Destination, All Traffic. Alert & Block thresholds can be set in terms of: (i) Monetary value and/or (ii) Minutes of Use. ",
+        "operationId": "removeStmsConfigforCustomer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "Unique identifier of API user’s organization. Available in invoice provided by Tata Communications",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cmsId",
+            "in": "path",
+            "description": "Unique product identifier for Voice Termination Service (VTS). Available in invoice provided by Tata Communications. User can also fetch the cmsId for a specific orgId by executing GET /customers/{orgId}/products in Products module.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "stmsId",
+            "in": "path",
+            "description": "Unique identifier of stms alert created. User can fetch the stmsId by executing GET /customers/{orgId}/products/{cmsId}/alerts/{fraudServiceId}.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "X-Authorization",
+            "in": "header",
+            "description": "JWT bearer token used for sandbox only (256 character alphanumeric key generated from sandbox register api)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fraudServiceId",
+            "in": "path",
+            "description": "Unique identifier of Subscriber Traffic Management Service (stms)",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "401": {
+            "description": "The request requires user authentication",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "403": {
+            "description": "The server understood the request, but is refusing to fulfill it",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "404": {
+            "description": "The server has not found anything matching the Request-URI",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "405": {
+            "description": "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          }
+        },
+        "security": [
+          {
+            "UserSecurity": []
+          }
+        ]
+      }
+    },
+    "/customers/{orgId}/products/{cmsId}/blocks": {
+      "get": {
+        "tags": [
+          "Blocks"
+        ],
+        "summary": "Generates list of existing Ad-hoc blocks",
+        "description": "Ad-hoc blocks are managed using Blocks resource. Use this API to retrieve details of all the Ad-hoc blocks for a specific orgId & cmsId. Ad-hoc blocks can be accessed for below use cases: <p>i. a specific CLI= 43810123456 to all destinations (to all B numbers)</p><p> ii. a CLI range= 25222% to all destinations (to all B numbers)</p> iii. a specific CLI= 23230212354 to a specific B number (15148687049)</p><p> iv. a specific CLI= 263123456 to a specific B number range (1732%)</p><p> v. a specific CLI= 9891123456 to a specific Destination (i.e. Chile- Rural)</p><p> vi. a specific CLI = 9371234567 to a specific Country (East Timor)</p><p> vii. all calls to a specific Destination (i.e. Inmarsat)</p><p> viii. all calls to a specific B number (15148687049)</p>",
+        "operationId": "getCustomerBlockSettings",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "Unique identifier of API user’s organization. Available in invoice provided by Tata Communications",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "cmsId",
+            "in": "path",
+            "description": "Unique product identifier for Voice Termination Service (VTS). Available in invoice provided by Tata Communications. User can also fetch the cmsId for a specific orgId by executing GET /customers/{orgId}/products in Products module.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "X-Authorization",
+            "in": "header",
+            "description": "JWT bearer token used for sandbox only (256 character alphanumeric key generated from sandbox register api)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status of the block – Active or Inactive",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "active",
+              "inactive"
+            ]
+          },
+          {
+            "name": "aNumber",
+            "in": "query",
+            "description": "Number of calling party. To be entered in full E.164 format, leading + sign is not allowed",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "aDestination",
+            "in": "query",
+            "description": "Calling party destination. Available in Tata Communications rate sheet",
+            "required": false,
+            "type": "string",
+            "maxLength": 100
+          },
+          {
+            "name": "aCountry",
+            "in": "query",
+            "description": "Calling party country",
+            "required": false,
+            "type": "string",
+            "maxLength": 3
+          },
+          {
+            "name": "bNumber",
+            "in": "query",
+            "description": "Called party number. To be entered in full E.164 format, leading +sign is not allowed",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "bDestination",
+            "in": "query",
+            "description": "Destination name as per Tata Communications rate sheet",
+            "required": false,
+            "type": "string",
+            "maxLength": 100
+          },
+          {
+            "name": "bCountry",
+            "in": "query",
+            "description": "Called party country",
+            "required": false,
+            "type": "string",
+            "maxLength": 3
+          },
+          {
+            "name": "aNumberType",
+            "in": "query",
+            "description": "To retrieve voice blocks set for a particular ANumber, enter code. To retrieve voice blocks set for a particular ADestination, enter destination. To retrieve voice blocks set for a particular ACountry, enter country.",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "code",
+              "destination",
+              "country"
+            ]
+          },
+          {
+            "name": "bNumberType",
+            "in": "query",
+            "description": "To retrieve voice blocks set for a particular BNumber, enter code. To retrieve voice blocks set for a particular BDestination, enter destination. To retrieve voice blocks set for a particular BCountry, enter country.",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "code",
+              "destination",
+              "country"
+            ]
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Optionally provide the number of results per page. Default results per page is 250, maximum results per page is 250",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "pageToken",
+            "in": "query",
+            "description": "A page token to retrieve the next page of results. Use the system-provided pageToken value from a response payload here",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A blocks array",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_1"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "401": {
+            "description": "The request requires user authentication",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "403": {
+            "description": "The server understood the request, but is refusing to fulfill it",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "404": {
+            "description": "The server has not found anything matching the Request-URI",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "405": {
+            "description": "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          }
+        },
+        "security": [
+          {
+            "UserSecurity": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Blocks"
+        ],
+        "summary": "Creates a new ad-hoc block",
+        "description": "<p>Ad-hoc blocks are managed using the Blocks resource. User have to specify both aNumberType & bNumbertype while posting a block. NumberType can be a Number, Country or Destination.</p>",
+        "operationId": "createCustomerBlockSetting",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/body_2"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "Unique identifier of API user’s organization. Available in invoice provided by Tata Communications",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "cmsId",
+            "in": "path",
+            "description": "Unique product identifier for Voice Termination Service (VTS). Available in invoice provided by Tata Communications. User can also fetch the cmsId for a specific orgId by executing GET /customers/{orgId}/products in Products module.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "X-Authorization",
+            "in": "header",
+            "description": "JWT bearer token used for sandbox only (256 character alphanumeric key generated from sandbox register api)",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "A block object",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/inline_response_200_1_blocks"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "401": {
+            "description": "The request requires user authentication",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "403": {
+            "description": "The server understood the request, but is refusing to fulfill it",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "404": {
+            "description": "The server has not found anything matching the Request-URI",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "405": {
+            "description": "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          }
+        },
+        "security": [
+          {
+            "UserSecurity": []
+          }
+        ]
+      }
+    },
+    "/customers/{orgId}/products/{cmsId}/blocks/{blockId}": {
+      "put": {
+        "tags": [
+          "Blocks"
+        ],
+        "summary": "Update a specific ad-hoc block setting",
+        "description": "<p>Ad-hoc blocks are managed using Blocks resource. Use this API to update an existing block setting by modifying block end date & status.",
+        "operationId": "updateCustomerBlockSetting",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "json payload",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/body_3"
+            }
+          },
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "Unique identifier of API user’s organization. Available in invoice provided by Tata Communications",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "cmsId",
+            "in": "path",
+            "description": "Unique product identifier for Voice Termination Service (VTS). Available in invoice provided by Tata Communications. User can also fetch the cmsId for a specific orgId by executing GET /customers/{orgId}/products in Products module.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "blockId",
+            "in": "path",
+            "description": "Unique identifier of voice block created. User can fetch the blockId by executing GET /customers/{orgId}/products/{cmsId}/blocks.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "X-Authorization",
+            "in": "header",
+            "description": "JWT bearer token used for sandbox only (256 character alphanumeric key generated from sandbox register api)",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A block object",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_1_blocks"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "401": {
+            "description": "The request requires user authentication",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "403": {
+            "description": "The server understood the request, but is refusing to fulfill it",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "404": {
+            "description": "The server has not found anything matching the Request-URI",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "405": {
+            "description": "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          }
+        },
+        "security": [
+          {
+            "UserSecurity": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Blocks"
+        ],
+        "summary": "Removes a block setting",
+        "description": "<p> Use this API is to delete an existing ad-hoc block.</p>",
+        "operationId": "removeCustomerBlockSetting",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "Unique identifier of API user’s organization. Available in invoice provided by Tata Communications",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "cmsId",
+            "in": "path",
+            "description": "Unique product identifier for Voice Termination Service (VTS). Available in invoice provided by Tata Communications. User can also fetch the cmsId for a specific orgId by executing GET /customers/{orgId}/products in Products module.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "blockId",
+            "in": "path",
+            "description": "Unique identifier of voice block created. User can fetch blockId by executing GET /customers/{orgId}/products/{cmsId}/blocks.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "X-Authorization",
+            "in": "header",
+            "description": "JWT bearer token used for sandbox only (256 character alphanumeric key generated from sandbox register api)",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "401": {
+            "description": "The request requires user authentication",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "403": {
+            "description": "The server understood the request, but is refusing to fulfill it",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "404": {
+            "description": "The server has not found anything matching the Request-URI",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "405": {
+            "description": "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          }
+        },
+        "security": [
+          {
+            "UserSecurity": []
+          }
+        ]
+      }
+    },
+    "/destinations": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Generates list of global destinations where voice fraud controls can be applied.",
+        "description": "<p> This API call returns the list of all global destinations which Tata Communications supports where voice alerts & blocks can be created. User can also filter the destinations list by the country using either iso3 code or country name.</p>",
+        "operationId": "getDestinations",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "iso3",
+            "in": "query",
+            "description": "Input destination as per iso3 code(e.g. IND, USA), Link: https://unstats.un.org/unsd/tradekb/knowledgebase/country-code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "destinationName",
+            "in": "query",
+            "description": "Input destination name as per Tata Communications rate sheet (e.g. SOUTH AFRICA Other)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "countryName",
+            "in": "query",
+            "description": "Input country name (e.g. ALBANIA)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Optionally provide the number of results per page. Default results per page is 250, maximum results per page is 250",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "pageToken",
+            "in": "query",
+            "description": "A page token to retrieve the next page of results. Use the system-provided pageToken value from a response payload here",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "list of destinations",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_2"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "401": {
+            "description": "The request requires user authentication",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "403": {
+            "description": "The server understood the request, but is refusing to fulfill it",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "404": {
+            "description": "The server has not found anything matching the Request-URI",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "405": {
+            "description": "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          }
+        },
+        "security": [
+          {
+            "UserSecurity": []
+          }
+        ]
+      }
+    },
+    "/customers/{orgId}/products": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Provides list of active voice products",
+        "description": "<p>Products is the resource name for services that the customer has subscribed. Use this API to get the list of Voice Termination Services (VTS) products identified by cmsId. Use Products related calls to find the cmsId associated with your organisation(orgId).</p>",
+        "operationId": "getProducts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "Unique identifier of API user’s organization. Available in invoice provided by Tata Communications",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "serviceType",
+            "in": "query",
+            "description": "Input VTS i.e. voice service type",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "X-Authorization",
+            "in": "header",
+            "description": "JWT bearer token used for sandbox only (256 character alphanumeric key generated from sandbox register api)",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "list of products",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_3"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "401": {
+            "description": "The request requires user authentication",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "403": {
+            "description": "The server understood the request, but is refusing to fulfill it",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "404": {
+            "description": "The server has not found anything matching the Request-URI",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "405": {
+            "description": "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          }
+        },
+        "security": [
+          {
+            "UserSecurity": []
+          }
+        ]
+      }
+    },
+    "/customers/{orgId}/products/{cmsId}/reports/{fraudServiceId}/blocks": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "summary": "Generates report of all the blocks with their status ",
+        "description": "<p>Using Subscriber Traffic Management Service (STMS) user can manage two levels of voice fraud thresholds i.e alerts and blocks. This API call will return a list of aNumbers blocked due to breach of block thresholds. </p>",
+        "operationId": "getStmsConfigReportforCustomer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "Unique identifier of API user’s organization. Available in invoice provided by Tata Communications",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cmsId",
+            "in": "path",
+            "description": "Unique product identifier for Voice Termination Service (VTS). Available in invoice provided by Tata Communications. User can also fetch the cmsId for a specific orgId by executing GET /customers/{orgId}/products in Products module.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "X-Authorization",
+            "in": "header",
+            "description": "JWT bearer token used for sandbox only (256 character alphanumeric key generated from sandbox register api)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "aNumber",
+            "in": "query",
+            "description": "Number of calling party. To be entered in full E.164 format, leading + sign is not allowed",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "bDestination",
+            "in": "query",
+            "description": "Destination name as per Tata Communications rate sheet",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fraudServiceId",
+            "in": "path",
+            "description": "Unique identifier of Subscriber Traffic Management Service (stms)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Optionally provide the number of results per page. Default results per page is 250, maximum results per page is 250",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "pageToken",
+            "in": "query",
+            "description": "A page token to retrieve the next page of results. Use the system-provided pageToken value from a response payload here",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Alert block report array",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_4"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "401": {
+            "description": "The request requires user authentication",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "403": {
+            "description": "The server understood the request, but is refusing to fulfill it.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "404": {
+            "description": "The server has not found anything matching the Request-URI",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "405": {
+            "description": "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          }
+        },
+        "security": [
+          {
+            "UserSecurity": []
+          }
+        ]
+      }
+    },
+    "/customers/{orgId}/products/{cmsId}/reports/{fraudServiceId}/summary": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "summary": "Generates summary report of all the blocks with their configurations ",
+        "description": "<p>Using Subscriber Traffic Management Service (STMS) user can manage two levels of voice fraud thresholds i.e alerts and blocks. This API call will return a summary of all the STMS alerts and blocks configurations for a specific cmsId. The summary includes STMS configuration current usage and remaining balance.</p>",
+        "operationId": "getStmsConfigSummaryReportforCustomer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "Unique identifier of API user’s organization. Available in invoice provided by Tata Communications",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cmsId",
+            "in": "path",
+            "description": "Unique product identifier for Voice Termination Service (VTS). Available in invoice provided by Tata Communications.User can also fetch the cmsId for a specific orgId by executing GET /customers/{orgId}/products in Products module.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "X-Authorization",
+            "in": "header",
+            "description": "JWT bearer token used for sandbox only (256 character alphanumeric key generated from sandbox register api)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "aNumber",
+            "in": "query",
+            "description": "Number of calling party. To be entered in full E.164 format, leading + sign is not allowed",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "bDestination",
+            "in": "query",
+            "description": "Destination name as per Tata Communications rate sheet",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fraudServiceId",
+            "in": "path",
+            "description": "Unique identifier of Subscriber Traffic Management Service (stms)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Optionally provide the number of results per page. Default results per page is 250, maximum results per page is 250",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "pageToken",
+            "in": "query",
+            "description": "A page token to retrieve the next page of results. Use the system-provided pageToken value from a response payload here",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "blocks report array",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_5"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "401": {
+            "description": "The request requires user authentication",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "403": {
+            "description": "The server understood the request, but is refusing to fulfill it",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "404": {
+            "description": "The server has not found anything matching the Request-URI",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "405": {
+            "description": "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          }
+        },
+        "security": [
+          {
+            "UserSecurity": []
+          }
+        ]
+      }
+    },
+    "/customers/{orgId}/products/{cmsId}/reports/{fraudServiceId}/notify": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "summary": "Generates report of all STMS alerts",
+        "description": "<p>Using Subscriber Traffic Management Service (STMS) user can manage two levels of voice fraud thresholds i.e alerts and blocks. This API call will return a list of all the aNumbers where only alert thresholds have been breached & not the block thresholds.</p>",
+        "operationId": "getStmsNotifyReportforCustomer",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "orgId",
+            "in": "path",
+            "description": "Unique identifier of API user’s organization. Available in invoice provided by Tata Communications",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "cmsId",
+            "in": "path",
+            "description": "Unique product identifier for Voice Termination Service (VTS). Available in invoice provided by Tata Communications. User can also fetch the cmsId for a specific orgId by executing GET /customers/{orgId}/products in Products module.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "X-Authorization",
+            "in": "header",
+            "description": "JWT bearer token used for sandbox only (256 character alphanumeric key generated from sandbox register api)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "aNumber",
+            "in": "query",
+            "description": "Number of calling party. To be entered in full E.164 format, leading + sign is not allowed",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "bDestination",
+            "in": "query",
+            "description": "Destination name as per Tata Communications rate sheet",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fraudServiceId",
+            "in": "path",
+            "description": "Unique identifier of Subscriber Traffic Management Service (stms)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Optionally provide the number of results per page. Default results per page is 250, maximum results per page is 250",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "pageToken",
+            "in": "query",
+            "description": "A page token to retrieve the next page of results. Use the system-provided pageToken value from a response payload here",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "notify block array",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_6"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "401": {
+            "description": "The request requires user authentication",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "403": {
+            "description": "The server understood the request, but is refusing to fulfill it",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "404": {
+            "description": "The server has not found anything matching the Request-URI",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "405": {
+            "description": "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          }
+        },
+        "security": [
+          {
+            "UserSecurity": []
+          }
+        ]
+      }
+    },
+    "/register": {
+      "get": {
+        "tags": [
+          "Sandbox Token"
+        ],
+        "summary": "Generates JSON Web Token (JWT) / X-Authorization",
+        "description": "<p>This api is needed to access the sandbox environment. Use this API to be given an JSNO Web token that must be provided wiht every sandbox Api command. The generated token is valid for 60 days. You can use this API again to regenerate new token when expired.</p>",
+        "operationId": "register",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "org data",
+            "schema": {
+              "$ref": "#/definitions/inline_response_200_7"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "401": {
+            "description": "The request requires user authentication",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "403": {
+            "description": "The server understood the request, but is refusing to fulfill it",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "404": {
+            "description": "The server has not found anything matching the Request-URI",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "405": {
+            "description": "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          },
+          "500": {
+            "description": "The server encountered an unexpected condition which prevented it from fulfilling the request.",
+            "schema": {
+              "$ref": "#/definitions/inline_response_400"
+            }
+          }
+        },
+        "security": [
+          {
+            "UserSecurity": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "UserSecurity": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "RequestStmsOrder": {
+      "description": "stms order object",
+      "required": [
+        "cmsId",
+        "contactDetails"
+      ],
+      "properties": {
+        "contactDetails": {
+          "$ref": "#/definitions/contactDetails"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Any descriptive notes or comments with the order"
+        }
+      }
+    },
+    "ResponseGetStmsOrder": {
+      "description": "response payload",
+      "properties": {
+        "totalCount": {
+          "type": "string"
+        },
+        "resultCount": {
+          "type": "string"
+        },
+        "prevPageToken": {
+          "type": "string"
+        },
+        "nextPageToken": {
+          "type": "string"
+        },
+        "orders": {
+          "type": "array",
+          "description": "list of stms order",
+          "items": {
+            "$ref": "#/definitions/StmsOrder"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "Status": {
+      "type": "string",
+      "enum": [
+        "Submitted",
+        "Active"
+      ],
+      "description": "specify if you want active it"
+    },
+    "StmsOrder": {
+      "description": "stms order subscription ",
+      "required": [
+        "orderId",
+        "cmsId",
+        "status",
+        "contactDetails"
+      ],
+      "properties": {
+        "orderId": {
+          "type": "string",
+          "description": "order id of the stms order"
+        },
+        "cmsId": {
+          "type": "string",
+          "description": "cmsId of the customer"
+        },
+        "productId": {
+          "$ref": "#/definitions/productId"
+        },
+        "orderDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Date when the order is placed"
+        },
+        "status": {
+          "$ref": "#/definitions/Status"
+        },
+        "contactDetails": {
+          "$ref": "#/definitions/contactDetails"
+        },
+        "completionDate": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string",
+          "description": " Any descriptive notes or comments with the order"
+        }
+      }
+    },
+    "contactDetails": {
+      "type": "object",
+      "required": [
+        "emailId",
+        "telephoneNumber"
+      ],
+      "description": "contact details of customer",
+      "properties": {
+        "emailId": {
+          "type": "string"
+        },
+        "telephoneNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "productId": {
+      "type": "string",
+      "enum": [
+        "stms",
+        "type1",
+        "type2"
+      ],
+      "description": "Service Type"
+    },
+    "inline_response_200_5_entries": {
+      "type": "object",
+      "required": [
+        "cmsId"
+      ],
+      "properties": {
+        "cmsId": {
+          "type": "string",
+          "description": "cms id"
+        },
+        "aNumber": {
+          "type": "string",
+          "description": "Number of calling party / aNumber. aNumber when numeric shall be in the form of a partial or full E.164 format, leading + sign is not allowed"
+        },
+        "bDestination": {
+          "type": "string",
+          "description": "bDestination number"
+        },
+        "cumulativeMinutes": {
+          "type": "number",
+          "description": "cumulative minutes"
+        },
+        "cumulativeCost": {
+          "type": "number",
+          "description": "cumulative cost"
+        },
+        "creditBlockLimit": {
+          "type": "number",
+          "description": "credit block limit"
+        },
+        "creditBlockBalance": {
+          "type": "number",
+          "description": "credit block balance"
+        },
+        "minuteBlockLimit": {
+          "type": "number",
+          "description": "minute block limit"
+        },
+        "minuteBlockBalance": {
+          "type": "number",
+          "description": "minute block balance"
+        },
+        "creditNotifyLimit": {
+          "type": "number",
+          "description": "credit notify limit"
+        },
+        "creditNotifyBalance": {
+          "type": "number",
+          "description": "credit notify balance"
+        },
+        "minuteNotifyLimit": {
+          "type": "number",
+          "description": "minute notify limit"
+        },
+        "minuteNotifyBalance": {
+          "type": "number",
+          "description": "minute notify balance"
+        },
+        "resetFrequency": {
+          "type": "string",
+          "description": "Reset Frequency (daily, monthly)",
+          "enum": [
+            "daily",
+            "monthly"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "description": "Status enum",
+          "enum": [
+            "active",
+            "inactive"
+          ]
+        }
+      },
+      "description": "Summary Report model"
+    },
+    "customersalerts_blocks": {
+      "type": "object",
+      "required": [
+        "resetFrequency",
+        "aNumber",
+        "bDestination"
+      ],
+      "properties": {
+        "aNumber": {
+          "type": "string",
+          "description": "Number of calling party. To be entered in full E.164 format, leading + sign is not allowed"
+        },
+        "bDestination": {
+          "type": "string",
+          "description": "Destination name as per Tata Communications rate sheet",
+          "maxLength": 100
+        },
+        "creditBlockLimit": {
+          "type": "number",
+          "description": "Monetary value (in USD) threshold, if voice traffic exceeds this threshold then, cmsId is blocked"
+        },
+        "minuteBlockLimit": {
+          "type": "number",
+          "description": "Minutes of usage threshold, if this voice traffic exceeds this threshold, then, cmsID is blocked"
+        },
+        "creditNotifyLimit": {
+          "type": "number",
+          "description": "Monetary value (in USD) threshold, if voice traffic exceeds this threshold then, an alert mail is sent to the customer"
+        },
+        "minuteNotifyLimit": {
+          "type": "number",
+          "description": "Minutes of usage threshold, if voice traffic exceeds this threshold then an alert mail is sent to the customer"
+        },
+        "resetFrequency": {
+          "type": "string",
+          "description": "Frequency to reset voice traffic thresholds, Choose daily or monthly",
+          "enum": [
+            "daily",
+            "monthly"
+          ]
+        },
+        "customerRequestNumber": {
+          "type": "string",
+          "description": "A custom request number which can be entered by API user",
+          "maxLength": 50
+        },
+        "customerComments": {
+          "type": "string",
+          "description": "API user can enter additional comments, length should not exceed 150 words",
+          "maxLength": 150
+        }
+      },
+      "description": "New Alert setting"
+    },
+    "customersstmsId_blocks": {
+      "type": "object",
+      "required": [
+        "resetFrequency"
+      ],
+      "properties": {
+        "creditBlockLimit": {
+          "type": "number",
+          "description": "Monetary value (in USD) threshold, if voice traffic exceeds this threshold then, cmsId is blocked "
+        },
+        "minuteBlockLimit": {
+          "type": "number",
+          "description": "Minutes of usage threshold, if this voice traffic exceeds this threshold, then, cmsID is blocked"
+        },
+        "creditNotifyLimit": {
+          "type": "number",
+          "description": "Monetary value (in USD) threshold, if voice traffic exceeds this threshold then, an alert mail is sent to the customer"
+        },
+        "minuteNotifyLimit": {
+          "type": "number",
+          "description": "Minutes of usage threshold, if voice traffic exceeds this threshold then an alert mail is sent to the customer"
+        },
+        "resetFrequency": {
+          "type": "string",
+          "description": "Frequency to reset voice traffic thresholds, Choose daily or monthly",
+          "enum": [
+            "daily",
+            "monthly"
+          ]
+        },
+        "customerRequestNumber": {
+          "type": "string",
+          "description": "A custom request number which can be entered by API user",
+          "maxLength": 50
+        },
+        "customerComments": {
+          "type": "string",
+          "description": "API user can enter additional comments, length should not exceed 150 words",
+          "maxLength": 150
+        }
+      },
+      "description": "Alert object for update"
+    },
+    "inline_response_200_6_entries": {
+      "type": "object",
+      "required": [
+        "cmsId",
+        "resetFrequency"
+      ],
+      "properties": {
+        "cmsId": {
+          "type": "string",
+          "description": "cms id"
+        },
+        "aNumber": {
+          "type": "string",
+          "description": "Number of calling party / aNumber. aNumber when numeric shall be in the form of a partial or full E.164 format, leading + sign is not allowed"
+        },
+        "bDestination": {
+          "type": "string",
+          "description": "bDestination"
+        },
+        "resetFrequency": {
+          "type": "string",
+          "description": "Reset Frequency (daily, monthly)",
+          "enum": [
+            "daily",
+            "monthly"
+          ]
+        },
+        "notifyDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "date of notification"
+        }
+      },
+      "description": "notify report model"
+    },
+    "inline_response_200_3_entries": {
+      "type": "object",
+      "required": [
+        "orgId",
+        "products"
+      ],
+      "properties": {
+        "orgName": {
+          "type": "string",
+          "description": "The name of the org"
+        },
+        "orgId": {
+          "type": "number",
+          "description": "The id of the org"
+        },
+        "products": {
+          "type": "array",
+          "description": "list of products",
+          "items": {
+            "$ref": "#/definitions/inline_response_200_3_products"
+          }
+        }
+      },
+      "description": "Product entry object"
+    },
+    "customersAdblocks_blocks": {
+      "type": "object",
+      "required": [
+        "startDate",
+        "bNumberType",
+        "bNumber",
+        "bDestination",
+        "bCountry"
+      ],
+      "properties": {
+        "aNumberType": {
+          "type": "string",
+          "description": "To set block for a ANumber/calling number, enter code. To set voice block for a calling destination, enter destination. To  set voice block for a calling country, enter country.",
+          "enum": [
+            "code",
+            "destination",
+            "country"
+          ]
+        },
+        "aNumber": {
+          "type": "string",
+          "description": "Number of calling party. To be entered in full E.164 format, leading + sign is not allowed"
+        },
+        "aDestination": {
+          "type": "string",
+          "description": "Calling party Destination name as per Tata Communications rate sheet",
+          "maxLength": 100
+        },
+        "aCountry": {
+          "type": "string",
+          "description": "Calling party country name",
+          "maxLength": 3
+        },
+        "bNumberType": {
+          "type": "string",
+          "description": "To set block for a BNumber/ called number,enter code. To set voice block for called destination, enter destination. To set voice block for called country, enter country.",
+          "enum": [
+            "code",
+            "destination",
+            "country"
+          ]
+        },
+        "bNumber": {
+          "type": "string",
+          "description": "Number of called party. To be entered in full E.164 format, leading + sign is not allowed"
+        },
+        "bDestination": {
+          "type": "string",
+          "description": "Called party destination. Available in Tata Communications rate sheet",
+          "maxLength": 100
+        },
+        "bCountry": {
+          "type": "string",
+          "description": "Called party country name",
+          "maxLength": 3
+        },
+        "startDate": {
+          "type": "string",
+          "description": "Start date of the block",
+          "format": "date-time"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "Stop date of the block",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the block – Active or Inactive",
+          "enum": [
+            "active",
+            "inactive"
+          ]
+        }
+      },
+      "description": "A block object"
+    },
+    "body": {
+      "type": "object",
+      "required": [
+        "blocks",
+        "aNumber",
+        "bdestination"
+      ],
+      "properties": {
+        "blocks": {
+          "$ref": "#/definitions/customersalerts_blocks"
+        }
+      },
+      "description": "json payload to create new Alert setting"
+    },
+    "inline_response_200_2_entries": {
+      "type": "object",
+      "required": [
+        "destinationName",
+        "destinationType"
+      ],
+      "properties": {
+        "iso3": {
+          "type": "string",
+          "description": "The iso3 code of destination"
+        },
+        "countryName": {
+          "type": "string",
+          "description": "The name of the country"
+        },
+        "destinationName": {
+          "type": "string",
+          "description": "The name of the destination"
+        },
+        "destinationType": {
+          "type": "string",
+          "description": "The type of destination",
+          "enum": [
+            "fixed",
+            "mobile",
+            "special"
+          ]
+        }
+      },
+      "description": "A destination object"
+    },
+    "body_3": {
+      "type": "object",
+      "properties": {
+        "block": {
+          "$ref": "#/definitions/customersblockId_block"
+        }
+      },
+      "description": "json payload"
+    },
+    "body_1": {
+      "type": "object",
+      "properties": {
+        "blocks": {
+          "$ref": "#/definitions/customersstmsId_blocks"
+        }
+      },
+      "description": "json payload"
+    },
+    "body_2": {
+      "type": "object",
+      "required": [
+        "blocks",
+        "bNumber",
+        "bNumberType",
+        "bCountry",
+        "bDestination"
+      ],
+      "properties": {
+        "blocks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/customersAdblocks_blocks"
+          }
+        }
+      },
+      "description": "json payload"
+    },
+    "inline_response_200": {
+      "type": "object",
+      "properties": {
+        "resultCount": {
+          "type": "number",
+          "description": "total number of results"
+        },
+        "nextPageToken": {
+          "type": "string",
+          "description": "A page token to retrieve the next page of results"
+        },
+        "prvPageToken": {
+          "type": "string",
+          "description": "A page token to retrieve the previous page of results"
+        },
+        "entries": {
+          "type": "array",
+          "description": "list of Alert settings",
+          "items": {
+            "$ref": "#/definitions/inline_response_200_entries"
+          }
+        }
+      },
+      "description": "response payload"
+    },
+    "customersblockId_block": {
+      "type": "object",
+      "properties": {
+        "endDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "end date of the block"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status enum",
+          "enum": [
+            "active",
+            "inactive"
+          ]
+        }
+      }
+    },
+    "inline_response_400": {
+      "type": "object",
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "string",
+          "description": "The error message"
+        },
+        "details": {
+          "type": "string",
+          "description": "Additional data that was passed in to describe the error"
+        },
+        "error_code": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The error code to identify an error message by code"
+        }
+      },
+      "description": "A generic error message in json format"
+    },
+    "inline_response_200_5": {
+      "type": "object",
+      "properties": {
+        "resultCount": {
+          "type": "number",
+          "description": "total number of results"
+        },
+        "nextPageToken": {
+          "type": "string",
+          "description": "A page token to retrieve the next page of results"
+        },
+        "prvPageToken": {
+          "type": "string",
+          "description": "A page token to retrieve the previous page of results"
+        },
+        "entries": {
+          "type": "array",
+          "description": "A list Block reports",
+          "items": {
+            "$ref": "#/definitions/inline_response_200_5_entries"
+          }
+        }
+      },
+      "description": "response payload"
+    },
+    "inline_response_200_3_products": {
+      "type": "object",
+      "required": [
+        "cmsId"
+      ],
+      "properties": {
+        "cmsId": {
+          "type": "string",
+          "description": "cms id"
+        },
+        "serviceDescShort": {
+          "type": "string",
+          "description": "short description of service"
+        },
+        "serviceDescLong": {
+          "type": "string",
+          "description": "long description of service"
+        }
+      },
+      "description": "A product object"
+    },
+    "inline_response_200_6": {
+      "type": "object",
+      "properties": {
+        "resultCount": {
+          "type": "number",
+          "description": "total number of results"
+        },
+        "nextPageToken": {
+          "type": "string",
+          "description": "A page token to retrieve the next page of results"
+        },
+        "prvPageToken": {
+          "type": "string",
+          "description": "A page token to retrieve the previous page of results"
+        },
+        "entries": {
+          "type": "array",
+          "description": "list of notify reports",
+          "items": {
+            "$ref": "#/definitions/inline_response_200_6_entries"
+          }
+        }
+      },
+      "description": "response payload"
+    },
+    "inline_response_200_7": {
+      "type": "object",
+      "required": [
+        "orgId"
+      ],
+      "properties": {
+        "orgId": {
+          "type": "string",
+          "description": "org id"
+        },
+        "token": {
+          "type": "string",
+          "description": "generated request token"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "created date"
+        },
+        "expiresAt": {
+          "type": "string",
+          "description": "token expiry date"
+        }
+      },
+      "description": "json payload"
+    },
+    "inline_response_200_entries": {
+      "type": "object",
+      "required": [
+        "cmsId",
+        "resetFrequency",
+        "stmsId"
+      ],
+      "properties": {
+        "stmsId": {
+          "type": "string",
+          "description": "stmId"
+        },
+        "cmsId": {
+          "type": "string",
+          "description": "cms id for Alert setting"
+        },
+        "aNumber": {
+          "type": "string",
+          "description": "Number of calling party / aNumber. aNumber when numeric shall be in the form of a partial or full E.164 format, leading + sign is not allowed"
+        },
+        "bDestination": {
+          "type": "string",
+          "description": "bDestination"
+        },
+        "creditBlockLimit": {
+          "type": "number",
+          "description": "credit block limit"
+        },
+        "minuteBlockLimit": {
+          "type": "number",
+          "description": "minute block limit"
+        },
+        "creditNotifyLimit": {
+          "type": "number",
+          "description": "credit notify limit"
+        },
+        "minuteNotifyLimit": {
+          "type": "number",
+          "description": "minute notify limit"
+        },
+        "resetFrequency": {
+          "type": "string",
+          "description": "Reset Frequency (daily, monthly)",
+          "enum": [
+            "daily",
+            "monthly"
+          ]
+        },
+        "lastModifiedBy": {
+          "type": "string",
+          "description": "last modification done by"
+        },
+        "lastModifiedDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "last modification date of Alert setting"
+        },
+        "customerRequestNumber": {
+          "type": "string",
+          "description": "request number of customer"
+        },
+        "customerComments": {
+          "type": "string",
+          "description": "customer comments",
+          "maxLength": 150
+        }
+      },
+      "description": "Alert model"
+    },
+    "inline_response_200_1_blocks": {
+      "type": "object",
+      "required": [
+        "cmsId",
+        "startDate"
+      ],
+      "properties": {
+        "blockId": {
+          "type": "string",
+          "description": "The id of the block"
+        },
+        "cmsId": {
+          "type": "string",
+          "description": "cms id"
+        },
+        "aNumberType": {
+          "type": "string",
+          "description": "The type of Number(code, destination, country)",
+          "enum": [
+            "code",
+            "destination",
+            "country"
+          ]
+        },
+        "aNumber": {
+          "type": "string",
+          "description": "Number of calling party / aNumber. aNumber when numeric shall be in the form of a partial or full E.164 format, leading + sign is not allowed"
+        },
+        "aDestination": {
+          "type": "string",
+          "description": "The value of aDestination",
+          "maxLength": 100
+        },
+        "aCountry": {
+          "type": "string",
+          "description": "The ISO 3166-1 alpha-3 country code of the country",
+          "maxLength": 3
+        },
+        "bNumberType": {
+          "type": "string",
+          "description": "The type of Number(code, destination, country)",
+          "enum": [
+            "code",
+            "destination",
+            "country"
+          ]
+        },
+        "bNumber": {
+          "type": "string",
+          "description": "Number of called party / bNumber. bNumber when numeric shall be in the form of a partial or full E.164 format, leading + sign is not allowed"
+        },
+        "bDestination": {
+          "type": "string",
+          "description": "The value of bDestination",
+          "maxLength": 100
+        },
+        "bCountry": {
+          "type": "string",
+          "description": "The ISO 3166-1 alpha-3 country code of the country",
+          "maxLength": 3
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "start date of the block"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "end date of the block"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status enum",
+          "enum": [
+            "active",
+            "inactive"
+          ]
+        }
+      },
+      "description": "A block object"
+    },
+    "inline_response_200_1": {
+      "type": "object",
+      "required": [
+        "resultCount"
+      ],
+      "properties": {
+        "resultCount": {
+          "type": "string",
+          "description": "Count of total blocks"
+        },
+        "nextPageToken": {
+          "type": "string",
+          "description": "A page token to retrieve the next page of results"
+        },
+        "prvPageToken": {
+          "type": "string",
+          "description": "A page token to retrieve the previous page of results"
+        },
+        "blocks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/inline_response_200_1_blocks"
+          }
+        }
+      },
+      "description": "response payload"
+    },
+    "inline_response_200_2": {
+      "type": "object",
+      "required": [
+        "resultCount"
+      ],
+      "properties": {
+        "resultCount": {
+          "type": "number",
+          "description": "Count of total destinations"
+        },
+        "nextPageToken": {
+          "type": "string",
+          "description": "A page token to retrieve the next page of results"
+        },
+        "prvPageToken": {
+          "type": "string",
+          "description": "A page token to retrieve the previous page of results"
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/inline_response_200_2_entries"
+          }
+        }
+      },
+      "description": "response payload"
+    },
+    "inline_response_200_3": {
+      "type": "object",
+      "properties": {
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/inline_response_200_3_entries"
+          }
+        }
+      },
+      "description": "response payload"
+    },
+    "inline_response_200_4_entries": {
+      "type": "object",
+      "required": [
+        "cmsId"
+      ],
+      "properties": {
+        "cmsId": {
+          "type": "string",
+          "description": "cms id"
+        },
+        "aNumber": {
+          "type": "string",
+          "description": "Number of calling party / aNumber. aNumber when numeric shall be in the form of a partial or full E.164 format, leading + sign is not allowed"
+        },
+        "bDestination": {
+          "type": "string",
+          "description": "bDestination number"
+        },
+        "resetFrequency": {
+          "type": "string",
+          "description": "Reset Frequency (daily, monthly)",
+          "enum": [
+            "daily",
+            "monthly"
+          ]
+        },
+        "blockDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "date of blocking"
+        },
+        "resetDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "reset date of block"
+        }
+      },
+      "description": "Block Report model"
+    },
+    "inline_response_200_4": {
+      "type": "object",
+      "properties": {
+        "resultCount": {
+          "type": "number",
+          "description": "total number of results"
+        },
+        "nextPageToken": {
+          "type": "string",
+          "description": "A page token to retrieve the next page of results"
+        },
+        "prvPageToken": {
+          "type": "string",
+          "description": "A page token to retrieve the previous page of results"
+        },
+        "entries": {
+          "type": "array",
+          "description": "A list Block reports",
+          "items": {
+            "$ref": "#/definitions/inline_response_200_4_entries"
+          }
+        }
+      },
+      "description": "response payload"
+    }
+  }
+}
